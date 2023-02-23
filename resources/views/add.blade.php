@@ -7,7 +7,7 @@
     <title>add</title>
     <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 </head>
-<body class="bg-info">
+<body class="bg-dark">
         <div class="container p-5">
             <div class="container m-auto" style="width: 50%">
                 <h1 class="text-center">Add</h1>
