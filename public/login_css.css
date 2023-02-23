@@ -1,0 +1,67 @@
+body{
+    box-sizing: border-box;
+    background: linear-gradient(to left, #000000, #747467);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+
+
+      
+}
+
+
+@keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    25% {
+        background-position: 50% 25%;
+      }
+    50% {
+      background-position: 100% 50%;
+    }
+    75% {
+        background-position: 50% 25%;
+      }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+.nav{
+    padding: 1.5em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.nav_a{
+    display: flex;
+    flex-direction: row;
+    gap: 1.4em;
+    justify-content: end;
+    
+}
+
+.nav_a a{
+    text-decoration: none;
+    color: white;
+}
+
+.nav_a a:hover{
+    color: cyan;
+    
+}
+
+#div_body{
+    height: 500px;
+}
+
+#div_body h1{
+    color: cyan;
+    mix-blend-mode: difference;
+}
+
+.collection{
+  text-decoration: none;
+  color: white;
+}
+
