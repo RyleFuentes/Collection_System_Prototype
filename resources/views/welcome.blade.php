@@ -2,7 +2,7 @@
 @section('body')
 <div class="container d-flex justify-content-center align-items-center" id="div_body">
     <div>
-      <h1>Hello world</h1>
+      <h1>Welcome to my personal project :3</h1>
     </div>
   </div>
 @endsection
