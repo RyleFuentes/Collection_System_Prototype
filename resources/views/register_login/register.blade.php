@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="Password" class="form-label">Password</label>
-                    <input type="text" name="password" class="form-control" >
+                    <input type="password" name="password" class="form-control" >
                     <span class="text-danger">@error('password') {{$message}}  @enderror</span>
                 </div>
                 

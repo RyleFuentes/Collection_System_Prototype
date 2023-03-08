@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <label for="Password" class="form-label">Password</label>
 
-                    <input type="text" name="password_login" class="form-control" placeholder="******">
+                    <input type="password" name="password_login" class="form-control" placeholder="******">
                 </div>
                
                 <div class="mt-3 text-center">

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('running_balance');
             $table->unsignedBigInteger('userID');
             $table->foreign('userID')->references('user_id')->on('user');
-
+            
             $table->timestamps();
         });
     }
