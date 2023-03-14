@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\loginController;
@@ -31,3 +32,9 @@ Route::get('add', [dashboardController::class, 'add_view'])->name('add_view');
 Route::post('debt', [dashboardController::class, 'debtInsert'])->name('debt');
 Route::get('logout', [dashboardController::class, 'logout'])->name('logout');
 Route::post('authenticate', [loginController::class, 'authenticate'])->name('auth');
+
+
+Route::resource('admin', adminController::class);
+Route::get('destroy/{id}', [adminController::class, 'destroy'])->name('delete');
+Route::post('update/{id}', [adminController::class, 'update'])->name('update');
+Route::post('search', [adminController::class, 'search'])->name('search');
