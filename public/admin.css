@@ -4,10 +4,55 @@
 
 body{
     height: 100vh;
+    
 }
 
 .body{
     height: 100vh;
+
+}
+
+.nav{
+
+    padding: 1.5em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 3em;
+    margin-bottom: 2em;
+    width: 100%;
+    
+}
+
+.navigation{
+    display: flex;
+    justify-content: end;
+    gap: 2em;
+
+}
+
+.navigation a{
+    text-decoration: none;
+    color: white;
+}
+
+.search-container{
+    width: 20rem;
+    margin: auto;
+    margin-bottom: 1.5em;
+    
+}
+
+.form-search{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: .5em;
+}
+
+
+.main-body{
+    display: grid;
+    gap: 1.2em;
 }
 
 .general_users_container{
@@ -20,7 +65,7 @@ body{
     margin: auto;
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 1em;
 }
 
@@ -30,4 +75,19 @@ body{
     width: 200px;
     border-radius: 20px;
     word-wrap: break-word;
+}
+
+.general_holder{
+
+    padding: 1.5em;
+    border-radius: 20px;
+    background-color: rgb(160, 145, 145);
+}
+
+.header{
+    border-bottom: 2px solid black;
+}
+
+.user-container{
+    padding: 1.5em;
 }

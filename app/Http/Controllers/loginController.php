@@ -27,8 +27,19 @@ class loginController extends Controller
         return back()->with('fail', "We do not recognize your email");
       }else{
         if(Hash::check($request->password_login, $fetch->Password)){
-            $request->session()->put('loggedUser', $fetch->user_id);
-            return redirect('dashboard');
+            if($fetch->role == 0){
+
+                $request->session()->put('loggedUser', $fetch->user_id);
+                return redirect('dashboard');
+            }
+            elseif($fetch->role == 1){
+                $request->session()->put('loggedUser', $fetch->user_id);
+                return redirect('edit');
+            }
+            else{
+                $request->session()->put('loggedUser', $fetch->user_id);
+                return redirect('admin');
+            }
 
         }
         else{
