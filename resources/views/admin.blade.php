@@ -32,7 +32,9 @@
 
 
                 <div class="navigation">
-                    <li><a href="">Add user</a></li>
+                    <!-- Button trigger modal -->
+                    @include('modal.add_user_modal')
+                    <li><a href="" data-bs-toggle="modal" data-bs-target="#update_modal">Add user</a></li>
                     <li><a href="{{route('logout')}}">logout</a></li>
                 </div>
 
@@ -42,16 +44,22 @@
             </nav>
 
 
-        @if (Session::get('delete_mssg'))
-            <div class="alert alert-success" role="alert">{{Session::get('delete_mssg')}}</div>
-        @endif
-        
-        
-
+      
        <div class="container main-body">
+        @if (Session::get('delete_mssg'))
+            <div class="alert alert-success m-auto" role="alert" style="width: 300px">{{Session::get('delete_mssg')}}</div>
+        @endif
+        @if (Session::get('message'))
+            <div class="alert alert-success  m-auto" role="alert" style="width: 300px"> {{Session::get('message')}}</div>
+        @endif
+
+        @if (Session::get('err_message'))
+            <div class="alert alert-danger  m-auto" role="alert" style="width: 300px">{{Session::get('err_message')}}</div>
+        @endif
 
            <div class="container general_users_container general_holder">
     
+            @include('modal.update_role_modal')
            
                <div class="header">
                    <h1>General users</h1>
@@ -69,7 +77,7 @@
     
                                    <div class="card-item d-flex">
     
-                                       <a href="#" class="btn btn-primary">Go somewhere</a>
+                                       <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_role" data-bs-id="{{$user->user_id}}"> Edit role</a>
                                        <a href="{{route('delete', $user->user_id)}}" class="btn btn-danger">Delete user</a>
                                    </div>
                                </div>
@@ -104,7 +112,7 @@
     
                                <div class="card-item d-flex">
     
-                                   <a href="#" class="btn btn-primary">Go somewhere</a>
+                                   <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_role" data-bs-id="{{$user->user_id}}">Edit role</a>
                                    <a href="{{route('delete', $user->user_id)}}" class="btn btn-danger">Delete user</a>
                                </div>
                            </div>
@@ -142,7 +150,7 @@
     
                                    <div class="card-item d-flex">
     
-                                       <a href="#" class="btn btn-primary">Go somewhere</a>
+                                       <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_role" data-bs-id="{{$user->user_id}}">Edit role</a>
                                        <a href="{{route('delete', $user->user_id)}}" class="btn btn-danger">Delete user</a>
                                    </div>
                                </div>

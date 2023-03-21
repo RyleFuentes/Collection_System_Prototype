@@ -48,9 +48,29 @@ class adminController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'fname' => 'required',
+            'lname'  => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:3|max:5'
+        ]);
+        //proper way of inserting using the create method
+        // the left part is the name of your table from the database
+        //the right part is the validated data you've inputted in
+        $insert = User::create([
+            'FirstName' => $validatedData['fname'],
+            'LastName' => $validatedData['lname'],
+            'Email' => $validatedData['email'],
+            'Password' => password_hash($validatedData['password'], PASSWORD_BCRYPT),
+        ]);
+    
+        if ($insert) {
+            return back()->with('message', "Successfully Added the user!");
+        } else {
+            return back()->with('err_message', "Try again, an error occurred");
+        }
     }
 
     /**
@@ -87,10 +107,14 @@ class adminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $user = User::where('user_id', $id)->first();
-        $user->delete();
-        return redirect('admin')->with('delete_mssg', 'successfully deleted user');
+        if ($user) {
+            $user->delete();
+            return redirect('admin')->with('delete_mssg', 'successfully deleted user');
+        } else {
+            return redirect('admin')->with('delete_mssg', 'user not found');
+        }
     }
 }

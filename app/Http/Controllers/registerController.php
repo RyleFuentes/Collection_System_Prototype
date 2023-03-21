@@ -31,27 +31,28 @@ class registerController extends Controller
      */
     public function store(Request $request)
     {
-        $insert = new User();
-        $request->validate([
+    
+        $validatedData = $request->validate([
             'fname' => 'required',
             'lname'  => 'required',
             'email' => 'required|email',
             'password' => 'required|min:3|max:5'
         ]);
-
-        $insert->FirstName = $request->fname;
-        $insert->LastName = $request->lname;
-        $insert->Email = $request->email;
-        $insert->Password = password_hash($request->password, PASSWORD_BCRYPT);
-        $insert->save();
-
-        if($insert){
+        //proper way of inserting using the create method
+        // the left part is the name of your table from the database
+        //the right part is the validated data you've inputted in
+        $insert = User::create([
+            'FirstName' => $validatedData['fname'],
+            'LastName' => $validatedData['lname'],
+            'Email' => $validatedData['email'],
+            'Password' => password_hash($validatedData['password'], PASSWORD_BCRYPT),
+        ]);
+    
+        if ($insert) {
             return redirect('login')->with('message', "Successfully registered you can now login");
-        }else{
-            return back()->with('message', "Try again, an error occured");
+        } else {
+            return back()->with('message', "Try again, an error occurred");
         }
-
-        
     }
 
     /**

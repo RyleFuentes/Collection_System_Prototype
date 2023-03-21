@@ -25,7 +25,6 @@ Route::get('/', function () {
 });
 
 Route::resource('welcome', welcomeController::class);
-Route::resource('register_login', registerController::class);
 Route::resource('login', loginController::class);
 Route::get('dashboard', [dashboardController::class, 'index'])->name('dashboard');
 Route::get('add', [dashboardController::class, 'add_view'])->name('add_view');
@@ -35,6 +34,6 @@ Route::post('authenticate', [loginController::class, 'authenticate'])->name('aut
 
 
 Route::resource('admin', adminController::class);
+Route::post('admin', [adminController::class, 'store'])->name('add_user');
 Route::get('destroy/{id}', [adminController::class, 'destroy'])->name('delete');
-Route::post('update/{id}', [adminController::class, 'update'])->name('update');
 Route::post('search', [adminController::class, 'search'])->name('search');
