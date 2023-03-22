@@ -26,6 +26,7 @@ Route::get('/', function () {
 
 Route::resource('welcome', welcomeController::class);
 Route::resource('login', loginController::class);
+
 Route::get('dashboard', [dashboardController::class, 'index'])->name('dashboard');
 Route::get('add', [dashboardController::class, 'add_view'])->name('add_view');
 Route::post('debt', [dashboardController::class, 'debtInsert'])->name('debt');

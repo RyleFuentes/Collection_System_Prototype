@@ -1,5 +1,5 @@
-@extends('Master_Layout.register_login_layout')
-@section('body')
+@extends('Master_Layout.welcome_layout')
+@section('body-content')
     
     <div class="container justify-content-center mt-5" >
         
