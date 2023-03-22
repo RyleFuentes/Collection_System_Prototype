@@ -34,6 +34,7 @@ Route::post('authenticate', [loginController::class, 'authenticate'])->name('aut
 
 
 Route::resource('admin', adminController::class);
+Route::get('edit/{id}', [adminController::class, 'edit'])->name('edit');
 Route::post('admin', [adminController::class, 'store'])->name('add_user');
 Route::get('destroy/{id}', [adminController::class, 'destroy'])->name('delete');
 Route::post('search', [adminController::class, 'search'])->name('search');

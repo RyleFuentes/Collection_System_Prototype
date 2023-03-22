@@ -84,24 +84,19 @@ class adminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id): Response
+    public function edit($id)
     {
-        //
+        $curr_role = User::where('user_id', $id)->first();
+        
+        return view('update_user', ['user'=>$curr_role]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        
-
-        $user = User::where('user_id', $id)->first();
-
-        $user->role = $request->rolechange;
-        $user->save();
-        return redirect('admin')->with('delete_mssg', 'test succesful');
-
+        User::update(z)
     }
 
     /**
