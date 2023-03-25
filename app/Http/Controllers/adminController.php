@@ -96,7 +96,6 @@ class adminController extends Controller
      */
     public function update(Request $request)
     {
-        User::update(z)
     }
 
     /**

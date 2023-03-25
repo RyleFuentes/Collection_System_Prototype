@@ -6,7 +6,7 @@
 
 <div class="container body m-auto">
    
-    <form action="{{ route('update_user', $user->user_id) }}" method="post" class="p-3 text-dark form_update" style="">
+    <form action="{{ route('add_user', $user->user_id) }}" method="post" class="p-3 text-dark form_update" style="">
         @csrf
         <div class="form-group">
             <label for="FirstName" class="form-label" >First Name</label>
@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             <label for="Lastname" class="form-label">Last Name</label>
-            <input type="text" name="lname" class="form-control" placeholder="e.g Fuentes" value="{{$user->LastName}}">
+            <input type="text" name="lname" class="form-control" placeholder="e.g Fuentes" value="{{$user->Lastname}}">
             <span class="text-danger">@error('lname') {{$message}}  @enderror</span>
         </div>
         <div class="form-group">
@@ -31,11 +31,7 @@
             </div>
             <span class="text-danger">@error('email') {{$message}}  @enderror</span>
         </div>
-        <div class="form-group mb-3">
-            <label for="Password" class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" value="{{$user->Password}}">
-            <span class="text-danger">@error('password') {{$message}}  @enderror</span>
-        </div>
+       
 
         <div class="form-group role_radio text-black">
             <label for="" class="form-label">Role</label>

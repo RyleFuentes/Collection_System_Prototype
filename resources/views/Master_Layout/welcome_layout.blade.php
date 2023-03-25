@@ -11,15 +11,16 @@
 </head>
 <body class="@yield('body-class')">
 
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link active" href="{{url('/')}}">Welcome</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{route('login.index')}}">Login</a>
-        </li>
-    </ul>
+    <nav class="nav" >
+        <div class="nav-item " style="display: flex;flex-direction: row; justify-content:space-between; width: 100%">
+
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ url('/') }}"><h1>Collection</h1></a>
+            </li>
+            
+        </div>
+    
+    </nav>
 
     @yield('body-content')
 
