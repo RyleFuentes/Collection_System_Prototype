@@ -35,6 +35,16 @@
                     <input type="password" name="password" class="form-control" >
                     <span class="text-danger">@error('password') {{$message}}  @enderror</span>
                 </div>
+
+                <div class="form-group ">
+                    <label for="" class="form-label">Role</label>
+                    <div class="form-group">
+
+                        <input type="radio" name="role" value="0" checked> General User
+                        <input type="radio" name="role"  value="1"> Editor/Secretary
+                        <input type="radio" name="role"  value="2"> Admin
+                    </div>
+                </div>
                 
 
                 <div class=" text-center">

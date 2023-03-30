@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\registerModel;
+
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ class registerController extends Controller
      */
     public function store(Request $request)
     {
+
     
         $validatedData = $request->validate([
             'fname' => 'required',
@@ -46,6 +48,7 @@ class registerController extends Controller
             'LastName' => $validatedData['lname'],
             'Email' => $validatedData['email'],
             'Password' => password_hash($validatedData['password'], PASSWORD_BCRYPT),
+
         ]);
     
         if ($insert) {

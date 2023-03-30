@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('collection', function (Blueprint $table) {
             $table->id('collection_id');
-            $table->integer('running_balance');
+            $table->integer('running_balance')->default(0);
             $table->unsignedBigInteger('userID');
             $table->foreign('userID')->references('user_id')->on('user');
             

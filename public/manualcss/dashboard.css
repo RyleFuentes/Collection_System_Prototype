@@ -108,3 +108,8 @@ body{
     border-radius: 20px;
     color: black;
 }
+
+.profile_logo a{
+    text-decoration: none;
+    color: white;
+}

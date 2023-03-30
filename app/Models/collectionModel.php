@@ -12,6 +12,7 @@ class collectionModel extends Model
     protected $table = 'collection';
     protected $fillable = [
         'running_balance',
-        'userID'
+        'userID',
+        'role',
     ];
 }

@@ -6,7 +6,7 @@
 
 <!--links the css from the master's layout--->
 @section('css_design')
-    dashboard.css
+    manualcss/dashboard.css
 @endsection
 
 @section('body-content')
@@ -15,11 +15,14 @@
     <nav class="nav fixed-top" id="navDash" >
         <div class="container-fluid" id="navContents">
  
-            <div class="nav-item " id="Logo">
+            <div class="nav-item profile_logo" id="Logo">
                 <h4 class="text-white">
-                    <i class="bi bi-person-check" style="font-size:2em"></i>
-                    {{$user->FirstName, " "}} {{$user->Lastname}} 
-            </h4></div>
+                    <a href="{{route('profile.index')}}">
+                        <i class="bi bi-person-check" style="font-size:2em"></i>
+                        {{$user->nickname}} 
+                    </a> 
+                </h4>
+            </div>
     
             <div class="nav-item " id="nav_item" >
                  <div class="nav-item">
@@ -72,6 +75,8 @@
              
               
             </div>
+
+            
             <div class="container" id="payment_enter">
                 <div class="container p 5">
                     This is a test

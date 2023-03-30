@@ -8,6 +8,9 @@ use App\Http\Controllers\home;
 use App\Models\registerModel;
 use App\Http\Controllers\welcomeController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\EditController;
+use App\Http\Controllers\EditorController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +42,10 @@ Route::get('edit/{id}', [adminController::class, 'edit'])->name('edit');
 Route::post('admin', [adminController::class, 'store'])->name('add_user');
 Route::get('destroy/{id}', [adminController::class, 'destroy'])->name('delete');
 Route::post('search', [adminController::class, 'search'])->name('search');
+
+
+Route::resource('profile', ProfileController::class);
+Route::post('check', [ProfileController::class, 'check'])->name('check_pass');
+
+
+Route::resource('editor', EditController::class);

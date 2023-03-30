@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+.body_css{
+    background-color: aquamarine;
+}
+.nav{
+    width: 100%;
+    padding: 1.5em;
+    border: 2px solid black;
+}
+.nav_items{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

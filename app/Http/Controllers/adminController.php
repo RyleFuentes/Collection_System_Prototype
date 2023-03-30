@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -50,11 +51,14 @@ class adminController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $validatedData = $request->validate([
             'fname' => 'required',
             'lname'  => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:3|max:5'
+            'password' => 'required|min:3|max:5',
+            'role' => 'required',
         ]);
         //proper way of inserting using the create method
         // the left part is the name of your table from the database
@@ -64,6 +68,8 @@ class adminController extends Controller
             'LastName' => $validatedData['lname'],
             'Email' => $validatedData['email'],
             'Password' => password_hash($validatedData['password'], PASSWORD_BCRYPT),
+            'role' => $validatedData['role'],
+            
         ]);
     
         if ($insert) {

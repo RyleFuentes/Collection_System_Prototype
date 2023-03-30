@@ -34,7 +34,7 @@ class loginController extends Controller
             }
             elseif($fetch->role == 1){
                 $request->session()->put('loggedUser', $fetch->user_id);
-                return redirect('edit');
+                return redirect('editor');
             }
             else{
                 $request->session()->put('loggedUser', $fetch->user_id);
