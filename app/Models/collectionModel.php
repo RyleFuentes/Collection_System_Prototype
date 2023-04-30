@@ -13,6 +13,6 @@ class collectionModel extends Model
     protected $fillable = [
         'running_balance',
         'userID',
-        'role',
+
     ];
 }
