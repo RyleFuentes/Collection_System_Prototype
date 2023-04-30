@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\collectionModel;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -16,9 +15,10 @@ class EditController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        $balance = collectionModel::all();
-        return view('editor', compact('users', 'balance'));
+        
+        $members = User::all();
+        
+        return view('editor', compact('members'));
     }
 
     /**

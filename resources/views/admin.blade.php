@@ -18,7 +18,6 @@
             <nav class="nav">
                 <div class="logo text-white">Admin</div>
 
-
                 <div class="search-container">
                     <form action="{{route('search')}}" method="post">
                         @csrf
@@ -30,6 +29,7 @@
                     </form>
                 </div>
 
+ 
 
                 <div class="navigation">
                     <!-- Button trigger modal -->

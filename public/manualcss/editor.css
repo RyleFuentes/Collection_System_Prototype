@@ -6,7 +6,7 @@
 
 
 .body_css{
-    background-color: aquamarine;
+    background-color: rgb(121, 150, 140);
 }
 .nav{
     width: 100%;
@@ -17,4 +17,8 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.table_test{
+    border-radius: 20px;
 }
