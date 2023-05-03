@@ -41,7 +41,23 @@
         </thead>
 
         <tbody class="text-black">
-            @foreach ($members as $item)
+            @if ($filteredMembers)
+                @foreach ($filteredMembers as $item)
+                <tr>
+                    
+                    <td>{{$item->FirstName}}</td>
+                    <td>{{$item->running_balance}}</td>
+                    <td>Hello</td>
+                    
+                    <td>
+                        <button type="submit" class="btn updateBtn btn-outline-dark">Update</button>
+                        <button type="submit" class="btn deleteBtn btn-outline-dark">Delete</button> 
+                    </td>
+                </tr> 
+                    
+                @endforeach
+            @else
+                @foreach ($members as $item)
                 <tr>
                     
                     <td>{{$item->FirstName}}</td>
@@ -54,7 +70,9 @@
                     </td>
                 </tr> 
                 
-            @endforeach
+                @endforeach
+            @endif
+            
                 
             </tr>
         </tbody>

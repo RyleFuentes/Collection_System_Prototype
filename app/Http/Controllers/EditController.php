@@ -15,10 +15,19 @@ class EditController extends Controller
      */
     public function index()
     {
-        
+        $filteredMembers = $this->getData();
+
         $members = User::all();
+        if ($filteredMembers) {
+            return view('editor', compact('filteredMembers'));
+        }
         
         return view('editor', compact('members'));
+    }
+
+    public function getData(){
+        $members =  DB::table('user')->select('*')->join('collection','user.user_id','=','collection.userID')->get();
+        return $members;
     }
 
     /**
