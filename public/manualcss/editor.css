@@ -4,9 +4,25 @@
     text-align: center;
 }
 
+:root{
+    --oxley-50: #f5f8f6;
+    --oxley-100: #dfe8e4;
+    --oxley-200: #bfd0c9;
+    --oxley-300: #97b1a7;
+    --oxley-400: #79968c;
+    --oxley-500: #57756b;
+    --oxley-600: #445d56;
+    --oxley-700: #394c46;
+    --oxley-800: #303f3b;
+    --oxley-900: #2b3633;
+    --oxley-950: #161d1b;
+
+
+}
+
 
 .body_css{
-    background-color: rgb(121, 150, 140);
+    background-color: var(--oxley-400);
 }
 .nav{
     width: 100%;
@@ -19,6 +35,36 @@
     justify-content: space-between;
 }
 
-.table_test{
-    border-radius: 20px;
+
+.nav-div a:hover{
+    color: aqua;
+    transition: all ease-in-out 200ms;
+}
+.search{
+
+    justify-content: end;
+    display: flex;
+    gap: 5px;
+    margin-bottom: 2em;
+
+}
+.search-btn:hover{
+    background-color: white;
+    color: black;
+}
+
+.search-bar{
+    width: 20%;
+}
+
+.deleteBtn{
+    background-color: var(--oxley-700);
+    border: none;
+    color: white;
+}
+
+.updateBtn{
+    background-color: var(--oxley-500);
+    border: none;
+    color: white;
 }
