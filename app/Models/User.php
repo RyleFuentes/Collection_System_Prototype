@@ -9,6 +9,10 @@ class User extends Model
 {
     use HasFactory;
 
+    public function collections(){
+        return $this->hasMany(collectionModel::class, 'userID');
+    }
+
     protected $table = 'user';
     protected $fillable = ['FirstName', 'LastName', 'Email', 'Password', 'role', 'nickname'];
     protected $primaryKey = 'user_id';

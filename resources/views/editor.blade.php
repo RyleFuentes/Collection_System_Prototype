@@ -17,6 +17,11 @@
     <a href=""   class="nav-link"><h3>Editor</h3></a>
     <div class="nav-content nav-div d-flex" style="gap: 1.5em">
         <a href="" class="nav-link">History</a>
+        <div class="nav-item" >
+            <a href="{{route('add_view')}}" class="nav-link"><i class="bi bi-plus-square" style="font-size: 1.5em"></i></a>
+            <span class="text">Add</span>
+            
+        </div>
         <a href="{{route('logout')}}" class="nav-link">Logout</a>
     </div>
     
@@ -41,36 +46,21 @@
         </thead>
 
         <tbody class="text-black">
-            @if ($filteredMembers)
-                @foreach ($filteredMembers as $item)
+            @if ($data)
+                @foreach ($data as $item)
                 <tr>
                     
-                    <td>{{$item->FirstName}}</td>
-                    <td>{{$item->running_balance}}</td>
+                    <td>{{$item['name']}}</td>
+                    <td>{{$item['running_balance']}}</td>
                     <td>Hello</td>
                     
                     <td>
-                        <button type="submit" class="btn updateBtn btn-outline-dark">Update</button>
-                        <button type="submit" class="btn deleteBtn btn-outline-dark">Delete</button> 
+                        <a href="{{route('update_bal', $item['userid'])}}" class="btn btn-dark">Update</a>
                     </td>
                 </tr> 
                     
                 @endforeach
-            @else
-                @foreach ($members as $item)
-                <tr>
-                    
-                    <td>{{$item->FirstName}}</td>
-                    <td>test</td>
-                    <td>Hello</td>
-                    
-                    <td>
-                        <button type="submit" class="btn updateBtn btn-outline-dark">Update</button>
-                        <button type="submit" class="btn deleteBtn btn-outline-dark">Delete</button> 
-                    </td>
-                </tr> 
-                
-                @endforeach
+           
             @endif
             
                 

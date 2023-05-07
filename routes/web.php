@@ -49,3 +49,5 @@ Route::post('check', [ProfileController::class, 'check'])->name('check_pass');
 
 
 Route::resource('editor', EditController::class);
+
+Route::get('Update_Balance/{id}', [EditController::class, 'update_balance'])->name('update_bal');

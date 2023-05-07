@@ -15,20 +15,40 @@ class EditController extends Controller
      */
     public function index()
     {
-        $filteredMembers = $this->getData();
+        $users = User::all();
+        $data = [];
 
-        $members = User::all();
-        if ($filteredMembers) {
-            return view('editor', compact('filteredMembers'));
+        foreach ($users as $user) {
+            $collections = $user->collections;
+
+            $runningBalance = 0;
+            foreach ($collections as $collection) {
+                $runningBalance += $collection->running_balance;
+            }
+
+            $data[] = [
+                'name' => $user->FirstName,
+                'running_balance' => $runningBalance,
+                'userid' => $user->user_id,
+            ];
         }
-        
-        return view('editor', compact('members'));
+        return view('editor', compact('data'));
+
     }
 
-    public function getData(){
-        $members =  DB::table('user')->select('*')->join('collection','user.user_id','=','collection.userID')->get();
-        return $members;
+
+    ///////////////////LAST PROGRESS WAS THIS, FIX THIS TOMMOROW///////////////
+
+    public function update_balance($id){
+        $user = User::findOrFail($id);
+        $collections = $user->collections;
+
+        return view('modal.edit_balance', [
+            'user' => $user,
+            'collections' => $collections,
+        ]);
     }
+   
 
     /**
      * Show the form for creating a new resource.
