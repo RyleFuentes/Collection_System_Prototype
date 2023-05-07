@@ -43,9 +43,20 @@ class EditController extends Controller
         $user = User::findOrFail($id);
         $collections = $user->collections;
 
+        $runningBalance = 0;
+
+        if ($collections->isEmpty()) {
+           $runningBalance = 0;
+        } else {
+            foreach ($collections as $collection) {
+                $runningBalance += $collection->running_balance;
+            }
+        }
+    
         return view('modal.edit_balance', [
             'user' => $user,
             'collections' => $collections,
+            'runningBalance' => $runningBalance
         ]);
     }
    

@@ -4,6 +4,10 @@
 
 <h1>Hello</h1>
 
-<h1>{{ $id }}</h1>
+<div class="container">
+   <h3>{{ $user->FirstName }}</h3>
+   <h3>{{ $user->role }}</h3>
+   <h3>{{ $runningBalance }}</h3>
+</div>
 
 @endsection
