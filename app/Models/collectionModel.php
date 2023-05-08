@@ -15,4 +15,6 @@ class collectionModel extends Model
         'userID',
 
     ];
+
+    protected $primaryKey = 'collection_id';
 }

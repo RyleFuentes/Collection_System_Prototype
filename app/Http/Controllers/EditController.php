@@ -41,6 +41,7 @@ class EditController extends Controller
 
     public function update_balance($id){
         $user = User::findOrFail($id);
+        
         $collections = $user->collections;
 
         $runningBalance = 0;
@@ -54,6 +55,7 @@ class EditController extends Controller
         }
     
         return view('modal.edit_balance', [
+            
             'user' => $user,
             'collections' => $collections,
             'runningBalance' => $runningBalance
@@ -88,7 +90,7 @@ class EditController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id): Response
+    public function edit(string $id)
     {
         //
     }
@@ -96,10 +98,25 @@ class EditController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, string $id)
     {
-        //
+        $user = User::find($id);
+        $collection = $user->collections()->first();
+        $update = $collection->update([
+            'running_balance' => $request->input('running_balance')
+        ]);
+
+        if ($collection) {
+            $collection->update([
+                'running_balance' => $request->input('running_balance')
+            ]);
+        
+            return redirect('editor')->with('message', 'Update successful');
+        } else {
+            return back()->with('err_msg', 'Collection not found');
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.

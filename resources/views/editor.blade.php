@@ -51,7 +51,7 @@
                 <tr>
                     
                     <td>{{$item['name']}}</td>
-                    <td>{{$item['running_balance']}}</td>
+                    <td>₱ {{$item['running_balance']}}</td>
                     <td>Hello</td>
                     
                     <td>
