@@ -102,9 +102,7 @@ class EditController extends Controller
     {
         $user = User::find($id);
         $collection = $user->collections()->first();
-        $update = $collection->update([
-            'running_balance' => $request->input('running_balance')
-        ]);
+        
 
         if ($collection) {
             $collection->update([
