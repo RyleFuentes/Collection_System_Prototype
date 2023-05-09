@@ -36,6 +36,14 @@
                     <span class="text-danger">@error('password') {{$message}}  @enderror</span>
                 </div>
 
+                <div class="form-group">
+                    <label for="Lastname" class="form-label">Current Balance</label>
+                    <input type="number" name="running_balance" class="form-control" placeholder="₱ "  value="{{old('running_balance')}}">
+                    <span class="text-danger">@error('running_balance') {{$message}}  @enderror</span>
+                </div>
+
+                
+
                 <div class="form-group ">
                     <label for="" class="form-label">Role</label>
                     <div class="form-group">

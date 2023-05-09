@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\collectionModel;
 use App\Models\User;
 
 use Illuminate\Http\RedirectResponse;
@@ -59,6 +60,7 @@ class adminController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:3|max:5',
             'role' => 'required',
+            'running_balance' =>'required',
         ]);
         //proper way of inserting using the create method
         // the left part is the name of your table from the database
@@ -71,8 +73,13 @@ class adminController extends Controller
             'role' => $validatedData['role'],
             
         ]);
+
+        $balance_insert = $insert->collections()->create([
+            'running_balance' => $validatedData['running_balance'],
+
+        ]);
     
-        if ($insert) {
+        if ($insert && $balance_insert) {
             return back()->with('message', "Successfully Added the user!");
         } else {
             return back()->with('err_message', "Try again, an error occurred");
@@ -110,8 +117,10 @@ class adminController extends Controller
     public function destroy($id)
     {
         $user = User::where('user_id', $id)->first();
+        //$balance = $user->collections()->first(); 
         if ($user) {
-            $user->delete();
+            $user->collections()->delete(); // delete the collections
+            $user->delete(); // delete the user
             return redirect('admin')->with('delete_mssg', 'successfully deleted user');
         } else {
             return redirect('admin')->with('delete_mssg', 'user not found');

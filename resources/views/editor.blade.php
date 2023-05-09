@@ -17,11 +17,6 @@
     <a href=""   class="nav-link"><h3>Editor</h3></a>
     <div class="nav-content nav-div d-flex" style="gap: 1.5em">
         <a href="" class="nav-link">History</a>
-        <div class="nav-item" >
-            <a href="{{route('add_view')}}" class="nav-link"><i class="bi bi-plus-square" style="font-size: 1.5em"></i></a>
-            <span class="text">Add</span>
-            
-        </div>
         <a href="{{route('logout')}}" class="nav-link">Logout</a>
     </div>
     
@@ -55,7 +50,7 @@
                     <td>Hello</td>
                     
                     <td>
-                        <a href="{{route('update_bal', $item['userid'])}}" class="btn btn-dark">Update</a>
+                        <a href="{{route('update_bal', $item['userid'])}}" class="btn btn-dark"> <i class="bi bi-pencil-square"></i> Update</a>
                     </td>
                 </tr> 
                     
