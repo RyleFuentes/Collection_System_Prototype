@@ -1,0 +1,36 @@
+@font-face {
+    font-family: komika;
+    src: url(../fonts/komika_font.ttf);
+  }
+
+
+*{
+    font-family: komika;
+}
+
+body{
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.nav_container{
+    padding: .5em;
+    background-color: rgb(140, 140, 140);
+    box-shadow: 0 2px 3px rgb(0, 0, 0);
+}
+
+.collection_text{
+    background-image: url(../images/coin_logo_final.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+}
+
+.collection_text:hover{
+    box-shadow: 0 2px 5px green;
+    transition: all ease-in-out 300ms;
+    transform: translateY(-3px);
+}

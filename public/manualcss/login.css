@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.collection_text{
+    color: black;
+}
+
+.collection_text:hover{
+    color: rgb(0, 221, 255);
+}
+
+.main_container{
+    margin-top: 6em;
+}

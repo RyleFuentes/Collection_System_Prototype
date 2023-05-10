@@ -1,7 +1,9 @@
 @extends('Master_Layout.welcome_layout')
+
+@section('css_design', '../manualcss/login.css')
 @section('body-content')
     
-    <div class="container justify-content-center mt-5" >
+    <div class="container main_container justify-content-center " >
         
 
         <div class="container bg-dark p-3 text-white"  style="width: 500px; border-radius: 20px; ">
