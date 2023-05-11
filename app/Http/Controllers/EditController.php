@@ -102,11 +102,15 @@ class EditController extends Controller
     {
         $user = User::find($id);
         $collection = $user->collections()->first();
+
+        $validated = $request->validate([
+            'running_balance' => 'required'
+        ]);
         
 
         if ($collection) {
             $collection->update([
-                'running_balance' => $request->input('running_balance')
+                'running_balance' => $validated['running_balance'],
             ]);
         
             return redirect('editor')->with('message', 'Update successful');

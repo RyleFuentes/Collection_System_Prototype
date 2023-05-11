@@ -112,7 +112,7 @@
     
                                <div class="card-item d-flex">
     
-                                   <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_role" data-bs-id="{{$user->user_id}}">Edit role</a>
+                                <a href="{{route('edit', $user->user_id)}}" class="btn btn-primary" > Edit role</a>
                                    <a href="{{route('delete', $user->user_id)}}" class="btn btn-danger">Delete user</a>
                                </div>
                            </div>
@@ -150,7 +150,7 @@
     
                                    <div class="card-item d-flex">
     
-                                       <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_role" data-bs-id="{{$user->user_id}}">Edit role</a>
+                                    <a href="{{route('edit', $user->user_id)}}" class="btn btn-primary" > Edit role</a>
                                        <a href="{{route('delete', $user->user_id)}}" class="btn btn-danger">Delete user</a>
                                    </div>
                                </div>

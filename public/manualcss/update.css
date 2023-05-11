@@ -2,6 +2,43 @@
     box-sizing: border-box;
 }
 
-.body{
-    background-color: black;
+body{
+    margin: 0;
+}
+
+.main_cont{
+    background-color: aqua;
+    border-radius: 20px;
+    box-shadow: 0 2px 3px black;
+
+    margin-top: 7em;
+    max-width: 60%;
+
+    padding: .6em;
+}
+
+.form-group{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.4em;
+}
+
+
+.input{
+    width: 60%;
+}
+
+.email_cont{
+    width: 60%;
+    margin-left: 42px;
+}
+
+
+.role_radio{
+    display: block;
+    
+}
+
+.role_radio li{
+    list-style: none;
 }

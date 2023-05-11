@@ -42,6 +42,8 @@ Route::get('edit/{id}', [adminController::class, 'edit'])->name('edit');
 Route::post('admin', [adminController::class, 'store'])->name('add_user');
 Route::get('destroy/{id}', [adminController::class, 'destroy'])->name('delete');
 Route::post('search', [adminController::class, 'search'])->name('search');
+Route::put('update_user_role/{id}', [adminController::class, 'update'])->name('update_user_role');
+
 
 
 Route::resource('profile', ProfileController::class);

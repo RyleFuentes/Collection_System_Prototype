@@ -17,6 +17,8 @@
 
             <label for="" class="form-label">Running balance</label>
             <input type="number" name="running_balance" id="" class="form-control update-control" value="{{$runningBalance}}">
+            <span class="text-danger">@error('running_balance') {{$message}}  @enderror</span>
+
          </div>
 
          <div class="card-footer">

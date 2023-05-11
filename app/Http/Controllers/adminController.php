@@ -16,25 +16,33 @@ class adminController extends Controller
      */
     public function index()
     {
-        $users = User::all();
         $search = session('search');
+        $users = User::query();
+
+        if (isset($_GET['clearSearch'])) {
+            session()->forget('search');
+        }
 
         if ($search) {
-            $users = User::where('FirstName', 'like', '%' . $search . '%')->orWhere('LastName', 'like', '%' . $search . '%')->orWhere('Email', 'like', '%' . $search . '%')->get();
+            $users = $users->where('FirstName', 'like', '%' . $search . '%')
+                        ->orWhere('LastName', 'like', '%' . $search . '%')
+                        ->orWhere('Email', 'like', '%' . $search . '%');
         }
+
+        $users = $users->get();
 
         return view('admin', compact('users'));
 
     }
 
 
-    
+        
     public function search(Request $request)
     {
-        $search = $request->search_user;
-        $users = User::where('FirstName', 'like', '%' . $search . '%')->orWhere('LastName', 'like', '%' . $search . '%')->orWhere('Email', 'like', '%' . $search . '%')->get();
+            $search = $request->search_user;
+            session(['search' => $search]);
 
-        return redirect()->route('admin.index')->with('users', $users)->with('search', $search);
+            return redirect()->route('admin.index', ['clearSearch' => 1]);
 
     }
 
@@ -107,8 +115,27 @@ class adminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, string $id)
     {
+        $user = User::where('user_id', $id);
+
+        $validated_request = $request->validate([
+            'fname' => 'required',
+            'lname' => 'required',
+            'email' => 'required|email',
+            'role' => 'required'
+
+        ]);
+
+        $user->update([
+            'role' => $validated_request['role'],
+            'FirstName' => $validated_request['fname'],
+            'LastName' => $validated_request['lname'],
+            'Email' => $validated_request['email'],
+
+        ]);
+
+        return redirect('admin')->with('message', 'Successfully Edited user information');
     }
 
     /**
