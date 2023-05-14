@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\collectionModel;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -15,52 +16,40 @@ class EditController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        $data = [];
+        $searched = Session('searched');
+        $data = User::query();
 
-        foreach ($users as $user) {
-            $collections = $user->collections;
-
-            $runningBalance = 0;
-            foreach ($collections as $collection) {
-                $runningBalance += $collection->running_balance;
-            }
-
-            $data[] = [
+        $data = User::with('collections')
+        ->get()
+        ->unique('user_id') // remove duplicate users based on user_id
+        ->map(function ($user) {
+            $runningBalance = $user->collections->sum('running_balance');
+            return [
                 'name' => $user->FirstName,
                 'running_balance' => $runningBalance,
                 'userid' => $user->user_id,
+                'role' => $user->role,
             ];
-        }
+        });
+
+        if($searched){
+            $data = $data->where('FirstName', 'like', '%' . $searched . '%')
+                ->orWhere('LastName', 'like', '%' . $searched . '%')
+                ->orWhere('Email', 'like', '%' . $searched . '%');
+        };
+
+        $data = $data->get();
+
         return view('editor', compact('data'));
+    }
+    public function search(Request $request)
+    {
+        $searchTerm = $request->search;
+        return redirect()->route('editor.index')->with('searched', $searchTerm);
 
     }
-
-
     ///////////////////LAST PROGRESS WAS THIS, FIX THIS TOMMOROW///////////////
 
-    public function update_balance($id){
-        $user = User::findOrFail($id);
-        
-        $collections = $user->collections;
-
-        $runningBalance = 0;
-
-        if ($collections->isEmpty()) {
-           $runningBalance = 0;
-        } else {
-            foreach ($collections as $collection) {
-                $runningBalance += $collection->running_balance;
-            }
-        }
-    
-        return view('modal.edit_balance', [
-            
-            'user' => $user,
-            'collections' => $collections,
-            'runningBalance' => $runningBalance
-        ]);
-    }
    
 
     /**

@@ -51,6 +51,8 @@ Route::post('check', [ProfileController::class, 'check'])->name('check_pass');
 
 
 Route::resource('editor', EditController::class);
+Route::post('search_edit', [EditController::class, 'search'])->name('search_mem');
+
 
 Route::get('Update_Balance/{id}', [EditController::class, 'update_balance'])->name('update_bal');
 Route::put('update/{id}', [EditController::class, 'update'])->name('update');

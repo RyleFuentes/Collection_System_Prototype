@@ -27,16 +27,23 @@
     <div class="alert alert-warning" role="alert">{{Session::get('message')}}</div>
 @endif
 
+<!----- SEARCH FUNCTION ----->
 <div class="container-fluid table_container mt-5">
     <div class="container search ">
-        <input type="text" class="form-control search-bar">
-        <button class="btn search-btn btn-dark" type="submit">Search</button>
+        <form action="{{route('search_mem')}}" method="post">
+        @csrf
+            <input type="text" class="form-control search-bar">
+            <button class="btn search-btn btn-dark" name="search" type="submit"><i class="bi icon bi-search"></i> </button>
+        </form>
     </div>
+
+
+<!---- TABLE DATA ------------>
     <table class="table table-success table_test">
         <thead>
             <th scope="col">Name</th>
             <th scope="col">Running balance</th>
-            <th scope="col">Extra balance</th>
+            <th scope="col">Role</th>
             <th scope="col">Action</th>
         </thead>
 
@@ -45,12 +52,39 @@
                 @foreach ($data as $item)
                 <tr>
                     
+                    
                     <td>{{$item['name']}}</td>
-                    <td>₱ {{$item['running_balance']}}</td>
-                    <td>Hello</td>
+                    <td>
+                        @if ($item['role'] == 2)
+                            Not Available
+
+                        @else
+                            ₱ {{$item['running_balance']}}
+                        @endif
+                        
+                    </td>
                     
                     <td>
+                        @if ($item['role'] == 0)
+                            <span class="role_container member">Orchestra member</span>
+                        @endif
+
+                        @if ($item['role'] == 1)
+                            <span class="role_container editor">Editor</span>
+                        @endif
+
+                        @if ($item['role'] == 2)
+                            <span class="role_container administrator">Administrator</span>
+                        @endif
+                    </td>
+                    
+                    <td>
+                        @if($item['role'] == 2)
+                            No access to this User
+                        @else
+
                         <a href="{{route('update_bal', $item['userid'])}}" class="btn btn-dark"> <i class="bi bi-pencil-square"></i> Update</a>
+                        @endif
                     </td>
                 </tr> 
                     
