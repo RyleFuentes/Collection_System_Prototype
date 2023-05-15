@@ -11,50 +11,60 @@ use Illuminate\Http\Response;
 
 class EditController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //DISPLAYS THE PAGE
+
+
     public function index()
     {
-        $searched = Session('searched');
-        $data = User::query();
-
-        $data = User::with('collections')
-        ->get()
-        ->unique('user_id') // remove duplicate users based on user_id
-        ->map(function ($user) {
-            $runningBalance = $user->collections->sum('running_balance');
-            return [
-                'name' => $user->FirstName,
-                'running_balance' => $runningBalance,
-                'userid' => $user->user_id,
-                'role' => $user->role,
-            ];
-        });
-
-        if($searched){
-            $data = $data->where('FirstName', 'like', '%' . $searched . '%')
-                ->orWhere('LastName', 'like', '%' . $searched . '%')
-                ->orWhere('Email', 'like', '%' . $searched . '%');
-        };
-
-        $data = $data->get();
-
+        $searched = session('searched');
+    
+        if ($searched && $searched->isNotEmpty()) {
+            $data = $searched->map(function ($user) {
+                $runningBalance = $user->collections->sum('running_balance');
+    
+                return [
+                    'name' => $user->FirstName,
+                    'running_balance' => $runningBalance,
+                    'userid' => $user->user_id,
+                    'role' => $user->role,
+                ];
+            });
+        } else {
+            $data = User::with('collections')->get()
+                ->map(function ($user) {
+                    $runningBalance = $user->collections->sum('running_balance');
+    
+                    return [
+                        'name' => $user->FirstName,
+                        'running_balance' => $runningBalance,
+                        'userid' => $user->user_id,
+                        'role' => $user->role,
+                    ];
+                });
+        }
+    
         return view('editor', compact('data'));
     }
+    
     public function search(Request $request)
     {
+
         $searchTerm = $request->search;
-        return redirect()->route('editor.index')->with('searched', $searchTerm);
+       
+        $result = User::where('FirstName', 'like', '%' . $searchTerm . '%')
+            ->orWhere('LastName', 'like', '%' . $searchTerm . '%')
+            ->orWhere('Email', 'like', '%' . $searchTerm . '%')
+            ->with('collections')
+            ->get();
 
+        return redirect()->route('editor.index')->with('searched', $result);
+      
     }
-    ///////////////////LAST PROGRESS WAS THIS, FIX THIS TOMMOROW///////////////
 
+    
+
+    
    
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(): Response
     {
         //
@@ -76,17 +86,19 @@ class EditController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    //REDIRECTS TO THE EDIT PAGE SO USER CAN EDIT BALANCE ---------------
     public function edit(string $id)
     {
-        //
+        $user = User::where('user_id', $id)->with('collections')->first();
+        
+        // Calculate the running balance
+        $user_balance = $user->collections->sum('running_balance');
+        
+        return view('modal.edit_balance', compact('user', 'user_balance'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
+   //UPDATE USER BALANCE -------------------------
     public function update(Request $request, string $id)
     {
         $user = User::find($id);
@@ -102,7 +114,7 @@ class EditController extends Controller
                 'running_balance' => $validated['running_balance'],
             ]);
         
-            return redirect('editor')->with('message', 'Update successful');
+            return redirect('editor')->with('message', 'Successfully updated user_balance');
         } else {
             return back()->with('err_msg', 'Collection not found');
         }

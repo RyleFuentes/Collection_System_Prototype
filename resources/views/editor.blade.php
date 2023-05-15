@@ -32,8 +32,8 @@
     <div class="container search ">
         <form action="{{route('search_mem')}}" method="post">
         @csrf
-            <input type="text" class="form-control search-bar">
-            <button class="btn search-btn btn-dark" name="search" type="submit"><i class="bi icon bi-search"></i> </button>
+            <input type="text" name="search" class="form-control search-bar">
+            <button class="btn search-btn btn-dark"  type="submit"><i class="bi icon bi-search"></i> </button>
         </form>
     </div>
 
@@ -90,6 +90,11 @@
                     
                 @endforeach
            
+            @else
+                <td>No use found</td>
+                <td>No user found</td>
+                <td>No User found</td>
+                <td>No user found</td>
             @endif
             
                 

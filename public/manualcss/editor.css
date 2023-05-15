@@ -94,6 +94,11 @@
     color: white;
 }
 
+.administrator{
+    background-color: rgb(118, 10, 10);
+    color: white;
+}
+
 
 .search-bar{
     width: 60%;

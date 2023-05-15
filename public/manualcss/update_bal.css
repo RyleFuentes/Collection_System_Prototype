@@ -1,7 +1,23 @@
 body{
     margin: 0;
     box-sizing: border-box;
-    background-color: aqua;
+    background-color: var(--deep-sea-green-900);
+}
+
+:root{
+    --deep-sea-green-50: #effefb;
+    --deep-sea-green-100: #c9fef6;
+    --deep-sea-green-200: #94fbee;
+    --deep-sea-green-300: #56f2e4;
+    --deep-sea-green-400: #23ded2;
+    --deep-sea-green-500: #0bc1b9;
+    --deep-sea-green-600: #059c98;
+    --deep-sea-green-700: #097c7a;
+    --deep-sea-green-800: #0c5e5e;
+    --deep-sea-green-900: #105151;
+    --deep-sea-green-950: #022f31;
+
+
 }
 .update_container{
     padding: 3em;
@@ -15,4 +31,24 @@ body{
 
 .main_container{
     width: 60%;
+
+}
+
+.card-container{
+    margin-top: 25vh;
+}
+
+.update_btn{
+    background-color: var(--deep-sea-green-500);
+    color: white;
+}
+
+.cancel_btn{
+    background-color: var(--deep-sea-green-700);
+    color: white;
+}
+
+.card-footer .btn:hover{
+    background-color: black;
+    color: white;
 }
