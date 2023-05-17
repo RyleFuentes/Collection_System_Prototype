@@ -68,7 +68,7 @@ body{
 
 #payment{
 
- 
+
 
     width: 500px;
     border-radius: 20px;
@@ -80,27 +80,11 @@ body{
 #payment:hover{
     
     cursor: pointer;
-    animation: changeColor 1s forwards;
+    transform: translateY(-3px);
+    transition: all ease-in-out 300ms;
 }
 
-@keyframes changeColor {
-    0%{
-        background-color: cyan;
-    }
-    25%{
-        background-color: rgb(160, 214, 214);
-    }
-    50%{
-        background-color: rgb(96, 148, 148);
-    }
-    80%{
-        background-color: rgb(55, 78, 78);
-    }
-    100%{
-        background-color: rgb(0, 0, 0);
-        color: white;
-    }
-}
+
 
 
 #payment_enter{
@@ -112,4 +96,12 @@ body{
 .profile_logo a{
     text-decoration: none;
     color: white;
+}
+
+.receipt_btn:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 2px 3px rgb(254, 1, 1) ;
+    background-color: black;
+    color: white;
+    transition: all ease-in-out 340ms;
 }

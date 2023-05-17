@@ -66,20 +66,25 @@
         </div>
 
         <div class="payment_info">
-            <div class="container p-5" id="payment">
-                @if ($fetch)
-                <h1 class="text-center">Your running balance is: {{$fetch}}</h1>
-                @else
-                    <h1 class="text-center">No data found</h1>
-                @endif
-             
-              
+            <div class="container">
+
+                <h3 class="text-white">Running Balance</h3>
+                <div class="container p-5" id="payment">
+                    @if ($fetch)
+                    <h1 class="text-center">₱ {{$fetch}}</h1>
+                    @else
+                        <h1 class="text-center">No data found</h1>
+                    @endif
+                 
+                  
+                </div>
+                <a href="" class="btn btn-outline-light receipt_btn mt-3">Get Payment Receipt</a>
             </div>
 
             
             <div class="container" id="payment_enter">
                 <div class="container p 5">
-                    This is a test
+                    Payment History:
                 </div>
             </div>
         </div>

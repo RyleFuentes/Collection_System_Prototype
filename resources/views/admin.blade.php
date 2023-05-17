@@ -61,6 +61,7 @@
     
             @include('modal.update_role_modal')
            
+
                <div class="header">
                    <h1>General users</h1>
                </div>
@@ -77,8 +78,11 @@
     
                                    <div class="card-item d-flex">
     
-                                       <a href="{{route('edit', $user->user_id)}}" class="btn btn-primary" > Edit role</a>
-                                       <a href="{{route('delete', $user->user_id)}}" class="btn btn-danger">Delete user</a>
+                                       <a href="{{route('edit', $user->user_id)}}" class="btn btn-warning" > Edit role</a>
+
+
+                                        @include('modal.delete_message')
+                                        <a href="{{route('delete', $user->user_id)}}" class="btn btn-danger">Delete user</a>
                                    </div>
                                </div>
                            </div>
