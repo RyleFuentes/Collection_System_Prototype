@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Transaction;
 use App\Models\collectionModel;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
@@ -17,8 +19,9 @@ class EditController extends Controller
     public function index()
     {
         $searched = session('searched');
-    
         if ($searched && $searched->isNotEmpty()) {
+            $users = $searched;
+
             $data = $searched->map(function ($user) {
                 $runningBalance = $user->collections->sum('running_balance');
     
@@ -29,21 +32,25 @@ class EditController extends Controller
                     'role' => $user->role,
                 ];
             });
+            
+            
         } else {
-            $data = User::with('collections')->get()
-                ->map(function ($user) {
-                    $runningBalance = $user->collections->sum('running_balance');
-    
-                    return [
-                        'name' => $user->FirstName,
-                        'running_balance' => $runningBalance,
-                        'userid' => $user->user_id,
-                        'role' => $user->role,
-                    ];
-                });
+            $users = User::with('collections')->paginate(5);
+
+            $data = [];
+
+            foreach ($users as $user) {
+                $runningBalance = $user->collections->sum('running_balance');
+
+                $data[] = [
+                    'name' => $user->FirstName,
+                    'running_balance' => $runningBalance,
+                    'userid' => $user->user_id,
+                    'role' => $user->role,
+                ];
+            }
         }
-    
-        return view('editor', compact('data'));
+        return view('editor', compact('data', 'users', 'searched'));
     }
     
     public function search(Request $request)
@@ -55,11 +62,46 @@ class EditController extends Controller
             ->orWhere('LastName', 'like', '%' . $searchTerm . '%')
             ->orWhere('Email', 'like', '%' . $searchTerm . '%')
             ->with('collections')
-            ->get();
+            ->paginate(5);
 
         return redirect()->route('editor.index')->with('searched', $result);
       
     }
+
+    public function update_transaction_balance( $id){
+        
+       $transaction = Transaction::where('transaction_id', $id)->first();
+
+       $amount = $transaction->Amount;
+       $userid = $transaction->userID;
+       $user = User::where('user_id', $userid)->with('collections')->first();
+       $balance = $user->collections->sum('running_balance');
+
+       $newBalance = $balance - $amount;
+
+        $update = $transaction->update([
+            'Status' => 1,
+
+        ]);
+
+
+        $update2 = $user->collections()->update([
+            'running_balance' => $newBalance,
+        ]);
+
+       //$transaction = Transaction::where('userID');
+
+       //1: Approved
+       if($update2 && $update){
+
+           return redirect('editor')->with('message', 'Succesfully approved request!');
+       }
+       return dd($amount, $balance);
+       
+    }
+    
+
+
 
     
 

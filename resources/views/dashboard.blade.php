@@ -60,6 +60,18 @@
 
 
 <div class="container-fluid" id="body_cont">
+
+ 
+    @if (Session::get('message'))
+        <div class="alert alert-success  mb-3 m-auto" role="alert" style="width: 300px"> {{Session::get('message')}}</div>
+    @endif
+
+    @if (Session::get('err_msg'))
+        <div class="alert alert-danger  mb-3 m-auto" role="alert" style="width: 300px">{{Session::get('err_message')}}</div>
+    @endif
+
+
+
     <div class="container  " id="balance_display">
         <div class="title mb-5">
             <h1 class="text-white text-center">Payment Information</h1>
@@ -78,13 +90,46 @@
                  
                   
                 </div>
-                <a href="" class="btn btn-outline-light receipt_btn mt-3">Get Payment Receipt</a>
+
+
+                
+                <a href="{{route('add_transaction', $user->user_id)}}" class="btn btn-outline-light receipt_btn mt-3" >
+                    Request payment!
+                </a>
+
             </div>
 
             
+            
             <div class="container" id="payment_enter">
+                <div class="card-top">
+                    <h3>REQUEST HISTORY</h3>
+                </div>
                 <div class="container p 5">
-                    Payment History:
+                    
+
+                    <div class="container request ">
+                        @foreach ($user_transaction as $item)
+                            @if($item->Status == 0)
+                                <div class="card holder bg-warning">
+                                    <div class="card-header">
+                                        <strong>Status: Pending</strong>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <li>Amount:  ₱ {{$item->Amount}}</li>
+                                        <li>Date: {{$item->transaction_date}}</li>
+                                    </div>
+                                </div>
+                            
+                            @endif
+                        @endforeach
+                    </div>
+
+                    <div class="container paginatelink_container mt-5">
+                        <!-- Display pagination links -->
+                        {{ $user_transaction->links() }}
+                    </div>
                 </div>
             </div>
         </div>

@@ -66,6 +66,29 @@ body{
 
 }
 
+.request{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.card-body li{
+    font-size: 12px;
+    list-style: none;
+}
+
+.card-top{
+    border-bottom: 2px solid black;
+    margin-bottom: 15px;
+}
+
+.holder:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 2px 3px black;
+    cursor: pointer;
+    transition: all ease-in-out 300ms;
+}
+
 #payment{
 
 

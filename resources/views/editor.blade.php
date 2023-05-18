@@ -16,7 +16,7 @@
 <nav class="navbar text-white p-3">
     <a href=""   class="nav-link"><h3>Editor</h3></a>
     <div class="nav-content nav-div d-flex" style="gap: 1.5em">
-        <a href="" class="nav-link">History</a>
+        <a href="{{route('pending-request.index')}}" class="nav-link">Pending Requests</a>
         <a href="{{route('logout')}}" class="nav-link">Logout</a>
     </div>
     
@@ -30,12 +30,14 @@
 <!----- SEARCH FUNCTION ----->
 <div class="container-fluid table_container mt-5">
     <div class="container search ">
-        <form action="{{route('search_mem')}}" method="post">
+        <form action="{{route('search_mem')}}" method="get">
         @csrf
             <input type="text" name="search" class="form-control search-bar">
             <button class="btn search-btn btn-dark"  type="submit"><i class="bi icon bi-search"></i> </button>
         </form>
     </div>
+
+  
 
 
 <!---- TABLE DATA ------------>
@@ -101,7 +103,31 @@
             </tr>
         </tbody>
     </table>
+
+    
+
+    
+       
+
 </div>
+
+    @if($searched)
+
+        <div class="container paginatelink_container">
+            <!-- Display pagination links -->
+            {{ $searched->links() }}
+        </div>
+        
+    @else
+
+
+    <div class="container paginatelink_container">
+        <!-- Display pagination links -->
+        {{ $users->links() }}
+    </div>
+    @endif
+
+
 
 
 @endsection

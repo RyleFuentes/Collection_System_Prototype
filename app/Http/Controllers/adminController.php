@@ -18,33 +18,26 @@ class adminController extends Controller
     {
         $search = session('search');
         $users = User::query();
-
-        if (isset($_GET['clearSearch'])) {
-            session()->forget('search');
-        }
-
+    
         if ($search) {
-            $users = $users->where('FirstName', 'like', '%' . $search . '%')
-                        ->orWhere('LastName', 'like', '%' . $search . '%')
-                        ->orWhere('Email', 'like', '%' . $search . '%');
+            $users->where('FirstName', 'like', '%' . $search . '%')
+                  ->orWhere('LastName', 'like', '%' . $search . '%')
+                  ->orWhere('Email', 'like', '%' . $search . '%');
         }
-
-        $users = $users->get();
-
+    
+        $users = $users->paginate(5);
+    
         return view('admin', compact('users'));
-
     }
-
-
-        
+    
+    
     public function search(Request $request)
     {
-            $search = $request->search_user;
-            session(['search' => $search]);
-
-            return redirect()->route('admin.index', ['clearSearch' => 1]);
-
+        $search = $request->search_user;
+    
+        return redirect()->route('admin.index')->with('search', $search);
     }
+    
 
 
     /**
@@ -73,19 +66,29 @@ class adminController extends Controller
         //proper way of inserting using the create method
         // the left part is the name of your table from the database
         //the right part is the validated data you've inputted in
-        $insert = User::create([
-            'FirstName' => $validatedData['fname'],
-            'LastName' => $validatedData['lname'],
-            'Email' => $validatedData['email'],
-            'Password' => password_hash($validatedData['password'], PASSWORD_BCRYPT),
-            'role' => $validatedData['role'],
-            
-        ]);
+        
+        $findEmail = User::where('Email', $validatedData['email'])->first();
 
-        $balance_insert = $insert->collections()->create([
-            'running_balance' => $validatedData['running_balance'],
+        if($findEmail){
+            return back()->with('err_message', "Email is already taken, please try again");
+        }
+        else{
 
-        ]);
+            $insert = User::create([
+                'FirstName' => $validatedData['fname'],
+                'LastName' => $validatedData['lname'],
+                'Email' => $validatedData['email'],
+                'Password' => password_hash($validatedData['password'], PASSWORD_BCRYPT),
+                'role' => $validatedData['role'],
+                
+            ]);
+    
+            $balance_insert = $insert->collections()->create([
+                'running_balance' => $validatedData['running_balance'],
+    
+            ]);
+        }
+
     
         if ($insert && $balance_insert) {
             return back()->with('message', "Successfully Added the user!");

@@ -12,6 +12,9 @@ class User extends Model
     public function collections(){
         return $this->hasMany(collectionModel::class, 'userID');
     }
+    public function transactions(){
+        return $this->hasMany(Transaction::class, 'userID');
+    }
 
     protected $table = 'user';
     protected $fillable = ['FirstName', 'LastName', 'Email', 'Password', 'role', 'nickname'];

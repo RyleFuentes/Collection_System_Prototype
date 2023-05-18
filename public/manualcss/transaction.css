@@ -1,0 +1,43 @@
+body{
+    box-sizing: border-box;
+    margin: 0;
+    background-color: rgb(151, 148, 148);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.main-container{
+    background-color: antiquewhite;
+    width: 50%;
+    padding: 1.4em;
+    border-radius: 14px;
+    box-shadow: 0 2px 2px rgb(0, 0, 0);
+}
+
+.card-header{
+    border-bottom: 2px solid black;
+}
+
+.form-group{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+}
+.form-control{
+    width: 69%;
+}
+.modal-footer{
+    margin-top: 20px;
+    display: flex;
+
+    gap: .4em;
+}
