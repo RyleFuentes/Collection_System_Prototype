@@ -49,72 +49,28 @@
                     
                         </div>
 
-                        <form action="{{route('update_transaction', $request->transaction_id)}}" method="post">
-                            @csrf
-                            @method('PUT')
-                            <div class="card-footer">
-                                <button  class="btn btn-secondary">decline</button>
-                                <button type="submit" class="btn btn-success">Approve</button>
+                        <div class="card-footer">
+                            <button  class="btn btn-secondary">decline</button>
+                            <form action="{{route('update_transaction', $request->transaction_id)}}" method="post">
+                                @csrf
+                                @method('PUT')
+
+                                    <button type="submit" class="btn btn-success">Approve</button>
+                                    
                                 
-                            </div>
-                        </form>
-                    </div>
-                @endif
-
-                @if($request->Status == 1)
-                <!--MEANS PROCESSED-->
-
-                    <div class="card bg-success">
-                        <div class="card-header">
-                            <strong>
-                                Status: Processed
-                                </strong>
-                        </div>
-
-                        <div class="card-body ">
-                            <li>User: {{$request->userID}}</li>
-                            <li>Date: {{$request->transaction_date}}</li>
-                            <li>Amount:  ₱ {{$request->Amount}}</li>
-                        </div>
-
-                        <div class="card-footer">
-                            <button class="btn btn-warning">Delete</button>
+                            </form>
                         </div>
                     </div>
                 @endif
 
-                @if($request->Status == 2)
-                <!--MEANS CANCELLED-->
-
-                    <div class="card">
-                        <div class="card-header">
-                            <strong>
-                                Status: Declined
-                                </strong>
-                        </div>
-
-                        <div class="card-body ">
-                            <li>User: {{$request->userID}}</li>
-                            <li>Date: {{$request->transaction_date}}</li>
-                            <li>Amount:  ₱ {{$request->Amount}}</li>
-                        </div>
-
-                        <div class="card-footer">
-                            <button class="btn btn-success">Approve</button>
-                            <button class="btn btn-warning">decline</button>
-                        </div>
-                    </div>
-                @endif
+               
             @endforeach
 
         @endif
 
         
     </div>
-    <div class="container paginatelink_container mt-5">
-        <!-- Display pagination links -->
-        {{ $requests->links() }}
-    </div>
+  
 
 
 @endsection

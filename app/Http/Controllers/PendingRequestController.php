@@ -15,7 +15,7 @@ class PendingRequestController extends Controller
      */
     public function index()
     {
-        $requests = Transaction::paginate(10);
+        $requests = Transaction::all();
 
 
         return view('pending_request', compact('requests'));

@@ -70,6 +70,9 @@ body{
     display: flex;
     flex-direction: column;
     gap: 3px;
+    max-height: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .card-body li{

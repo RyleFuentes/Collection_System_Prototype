@@ -21,7 +21,7 @@ class dashboardController extends Controller
         $user = User::where('user_id', $loggedUserID)->with('collections')->first();
         $fetch = $user->collections->sum('running_balance');
 
-        $user_transaction = $user->transactions()->paginate(3);
+        $user_transaction = $user->transactions()->get();
 
         return view('dashboard', compact('user', 'fetch', 'user_transaction'));
     }
@@ -55,6 +55,14 @@ class dashboardController extends Controller
 
         }
 
+    }
+
+
+    //CALLING THE TRANSACTION HISTORY
+    public function transaction_history($id){
+        $user = User::where('user_id', $id)->with('transactions')->first();
+        $transactions = $user->transactions()->get();
+        return view('related_page.transaction_history', compact('transactions'));
     }
 
 

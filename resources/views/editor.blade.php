@@ -16,7 +16,7 @@
 <nav class="navbar text-white p-3">
     <a href=""   class="nav-link"><h3>Editor</h3></a>
     <div class="nav-content nav-div d-flex" style="gap: 1.5em">
-        <a href="{{route('pending-request.index')}}" class="nav-link">Pending Requests</a>
+        <a href="{{route('pending-request.index')}}" class="nav-link">Pending Request</a>
         <a href="{{route('logout')}}" class="nav-link">Logout</a>
     </div>
     

@@ -19,7 +19,7 @@
                 <h4 class="text-white">
                     <a href="{{route('profile.index')}}">
                         <i class="bi bi-person-check" style="font-size:2em"></i>
-                        {{$user->nickname}} 
+                        {{$user->FirstName}} 
                     </a> 
                 </h4>
             </div>
@@ -30,15 +30,11 @@
                      <span class="text">Payment</span>
                  </div>
                  <div class="nav-item">
-                     <a href="" class="nav-link"><i class="bi bi-clock-history" style="font-size: 1.5em"></i></a>
+                     <a href="{{route('history', $user->user_id)}}" class="nav-link"><i class="bi bi-clock-history" style="font-size: 1.5em"></i></a>
                      <span class="text">History</span>
                      
                  </div>
-                 <div class="nav-item" >
-                     <a href="{{route('add_view')}}" class="nav-link"><i class="bi bi-plus-square" style="font-size: 1.5em"></i></a>
-                     <span class="text">Add</span>
-                     
-                 </div>
+                 
                  <div class="nav-item">
                      <a href="" class="nav-link"><i class="bi bi-patch-question" style="font-size: 1.5em"></i></a>
                      <span class="text">Question</span>
@@ -108,28 +104,29 @@
                 <div class="container p 5">
                     
 
-                    <div class="container request ">
-                        @foreach ($user_transaction as $item)
-                            @if($item->Status == 0)
-                                <div class="card holder bg-warning">
-                                    <div class="card-header">
-                                        <strong>Status: Pending</strong>
-                                    </div>
+                    <div class="container request p-5">
+                        <table>
 
-                                    <div class="card-body">
-                                        <li>Amount:  ₱ {{$item->Amount}}</li>
-                                        <li>Date: {{$item->transaction_date}}</li>
+                            @foreach ($user_transaction as $item)
+                                @if($item->Status == 0)
+                                    <div class="card holder bg-warning">
+                                        <div class="card-header">
+                                            <strong>Status: Pending</strong>
+                                        </div>
+    
+                                        <div class="card-body">
+                                            <li>Amount:  ₱ {{$item->Amount}}</li>
+                                            <li>Date: {{$item->transaction_date}}</li>
+                                        </div>
                                     </div>
-                                </div>
-                            
-                            @endif
-                        @endforeach
+                                
+                                @endif
+                            @endforeach
+                        </table>
                     </div>
-
-                    <div class="container paginatelink_container mt-5">
-                        <!-- Display pagination links -->
-                        {{ $user_transaction->links() }}
-                    </div>
+             
+   
+                   
                 </div>
             </div>
         </div>

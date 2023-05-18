@@ -1,0 +1,57 @@
+body{
+    box-sizing: border-box;
+    margin: 0;
+    background-color: rgb(87, 86, 86);
+}
+
+.mother_container{
+    margin-top: 5em;
+}
+
+
+
+.test_container{
+    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+.cards_container{
+    padding: 1.5em;
+    display: grid;
+    
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 5px;
+
+    
+
+}
+
+.card-body li{
+    display: flex;
+    flex-direction: row;
+}
+.holder{
+    width: 250px;
+}
+
+.holder:hover{
+
+    transform: translateY(-4px);
+    transition: all ease-in-out 450ms;
+    box-shadow: 0 2px 3px rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.pdf_btn{
+
+}
+
+.pdf_btn:hover{
+    background-color: white;
+    color: black;
+    transform: translateY(-3px);
+    box-shadow: 0 2px 4px red;
+
+    transition: all ease-in-out 300ms;
+}

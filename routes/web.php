@@ -13,6 +13,7 @@ use App\Http\Controllers\EditorController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\PendingRequestController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransactionHistory;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,7 @@ Route::get('add', [dashboardController::class, 'add_view'])->name('add_view');
 Route::post('debt', [dashboardController::class, 'debtInsert'])->name('debt');
 Route::get('logout', [dashboardController::class, 'logout'])->name('logout');
 Route::post('authenticate', [loginController::class, 'authenticate'])->name('auth');
+Route::get('transaction-history/{id}', [dashboardController::class, 'transaction_history'])->name('history');
 
 
 Route::resource('admin', adminController::class);
