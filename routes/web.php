@@ -41,6 +41,7 @@ Route::post('debt', [dashboardController::class, 'debtInsert'])->name('debt');
 Route::get('logout', [dashboardController::class, 'logout'])->name('logout');
 Route::post('authenticate', [loginController::class, 'authenticate'])->name('auth');
 Route::get('transaction-history/{id}', [dashboardController::class, 'transaction_history'])->name('history');
+Route::get('pdf-download/{id}', [dashboardController::class, 'pdf'])->name('pdf');
 
 
 Route::resource('admin', adminController::class);

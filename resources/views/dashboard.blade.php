@@ -105,24 +105,27 @@
                     
 
                     <div class="container request p-5">
-                        <table>
+                  
+                        
+                            
 
-                            @foreach ($user_transaction as $item)
-                                @if($item->Status == 0)
-                                    <div class="card holder bg-warning">
-                                        <div class="card-header">
-                                            <strong>Status: Pending</strong>
+                                @foreach ($user_transaction as $item)
+                                    @if($item->Status == 0)
+                                        <div class="card holder bg-warning">
+                                            <div class="card-header">
+                                                <strong>Status: Pending</strong>
+                                            </div>
+        
+                                            <div class="card-body">
+                                                <li>Amount:  ₱ {{$item->Amount}}</li>
+                                                <li>Date: {{$item->transaction_date}}</li>
+                                            </div>
                                         </div>
-    
-                                        <div class="card-body">
-                                            <li>Amount:  ₱ {{$item->Amount}}</li>
-                                            <li>Date: {{$item->transaction_date}}</li>
-                                        </div>
-                                    </div>
-                                
-                                @endif
-                            @endforeach
-                        </table>
+                                   
+        
+                                    @endif
+                                @endforeach
+                            
                     </div>
              
    

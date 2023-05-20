@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\collectionModel;
+use App\Models\Transaction;
+use PDF;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\RedirectResponse;
@@ -63,6 +65,19 @@ class dashboardController extends Controller
         $user = User::where('user_id', $id)->with('transactions')->first();
         $transactions = $user->transactions()->get();
         return view('related_page.transaction_history', compact('transactions'));
+    }
+
+
+    //GENERATING PDF CONTENTS
+
+    public function pdf($id){
+        $transaction = Transaction::where('transaction_id', $id)->first();
+        $user = User::where('user_id', $transaction->userID)->first();
+
+        $pdf = PDF::loadview('related_page.pdf-content', compact('transaction', 'user'));
+
+        return $pdf->stream();
+        //return dd($user->FirstName);
     }
 
 

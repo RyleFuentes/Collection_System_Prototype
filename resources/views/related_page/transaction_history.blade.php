@@ -17,8 +17,11 @@
             <div class="card-header"><h3>TRANSACTION HISTORY</h3></div>
             <div class="container test_container">
 
+
+
                 <div class="container cards_container">
                     @foreach ($transactions as $item)
+
                                     @if($item->Status == 1)
                                         <div class="card holder bg-success">
                                             <div class="card-header">
@@ -31,13 +34,14 @@
                                             </div>
 
                                             <div class="card-footer">
-                                                <a href=""  class="btn btn-warning pdf_btn" >Generate pdf</a>
+                                                <a href="{{route('pdf', $item->transaction_id)}}"  class="btn btn-warning pdf_btn" >Generate pdf</a>
                                             </div>
                                         </div>
                                     
                                         
                                     @endif
-                                @endforeach
+
+                    @endforeach
                 </div>
             </div>
 
