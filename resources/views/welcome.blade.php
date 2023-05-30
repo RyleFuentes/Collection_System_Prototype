@@ -14,7 +14,7 @@
       <form action="{{route('login.index')}}" >
         @csrf
         <button type="submit text-center">
-          Get Started!
+          Get Startedsss!
           <div id="clip">
               <div id="leftTop" class="corner"></div>
               <div id="rightBottom" class="corner"></div>
